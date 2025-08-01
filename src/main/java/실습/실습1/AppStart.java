@@ -1,4 +1,4 @@
-package example.day02.실습.실습1;
+package 실습.실습1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
