@@ -19,12 +19,12 @@
         (1) 스캔대상 : @Component @RestController @Controller @Service @Repository @Mapper 등등 주로 MVC 어노테이션
         (2) 주의할점 : 현재 AppStart 클래스 기준의 상위패키지는 스캔안되므로 프로젝트 항상 최상위 폴더에 위치한다.
 
-@Component          : bean(객체) 자동으로 생성
-2. @Controller      : HTTP(웹)통신요청과 응답처리 , +@Component
-3. @PostMapping()     : HTTP(웹)통신의 method 중에 POST방식으로 요청 매핑(연결) , 주로 Create
-4. @GetMapping      : HTTP(웹)통신의 method 중에 GET 방식으로 요청 매핑(연결) , 주로 Read
-5. @PutMapping      : HTTP(웹)통신의 method 중에 PUT 방식으로 요청 매핑(연결) , 주로 Put
-6. @DeleteMapping      : HTTP(웹)통신의 method 중에 DELETE 방식으로 요청 매핑(연결) , 주로 Delete
+2. @Component       : bean(객체) 자동으로 생성
+3. @Controller      : HTTP(웹)통신요청과 응답처리 , +@Component
+4. @PostMapping()   : HTTP(웹)통신의 method 중에 POST방식으로 요청 매핑(연결) , 주로 Create
+5. @GetMapping      : HTTP(웹)통신의 method 중에 GET 방식으로 요청 매핑(연결) , 주로 Read
+6. @PutMapping      : HTTP(웹)통신의 method 중에 PUT 방식으로 요청 매핑(연결) , 주로 Put
+7. @DeleteMapping   : HTTP(웹)통신의 method 중에 DELETE 방식으로 요청 매핑(연결) , 주로 Delete
     @XXXXMapping( "URL정의" ) : Mapping어노테이션 (소괄호 안에서 웹주소(URL)을 baseURL(http:localhost:8080) 뒤로 사용할 주소 정의
     @GetMapping("/member") :   "http:localhost:8080/member"
-7/ @ResponseBody      : HTTP(웹)통신의 요청 처리 이후 응답반환시 *자바 타입에서 주로 JSON 타입으로 변환*
+8. @ResponseBody      : HTTP(웹)통신의 요청 처리 이후 응답반환시 *자바 타입에서 주로 JSON 타입으로 변환*
