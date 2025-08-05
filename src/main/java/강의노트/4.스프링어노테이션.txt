@@ -28,3 +28,12 @@
     @XXXXMapping( "URL정의" ) : Mapping어노테이션 (소괄호 안에서 웹주소(URL)을 baseURL(http:localhost:8080) 뒤로 사용할 주소 정의
     @GetMapping("/member") :   "http:localhost:8080/member"
 8. @ResponseBody      : HTTP(웹)통신의 요청 처리 이후 응답반환시 *자바 타입에서 주로 JSON 타입으로 변환*
+9.
+
+
+[ HTTP 자료 포함 ]
+    방법1. 쿼리스트링 ? URL 경로상의 매개변수 표현 , get/delete method 표현 , 매개변수 노출O
+        예] http://locahost:8080/board?mname=유재석&age=10
+    방법2. BODY(본문) ? HTTP BODY(본문)에 매개변수 표현, post/put method 표현 , 매개변수 노출X
+        예] http://localhost:8080
+        F12[개발자도구] -> [네트워크] -> 지정통신망 -> [페이로드] : 매개변수 노출여부
