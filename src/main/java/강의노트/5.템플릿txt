@@ -6,6 +6,19 @@
     2.
 [ Spring 동적파일 ]
     -> Spring 프로젝트내 JSP(JAVA+HTML:MVC1패턴) / *타임리프*(JAVA+HTML) / 머스테치 / REACT(JS+HTML:MVC2) 등등 파일
+        JSP란 ? .jsp 파일내 java 와 html 코드를 모두 작성 가능한 확장자 : MVC1패턴( controller+view )
+            -> 강의기준은 .jsp 파일 사용하되 특정기능만 사용, MVC2패턴( controll와 view 분리 )
+
     -> 정적파일은 코드 그 자체로 브라우저 해석(렌더링)
         VS
     -> 동적파일은 코드 그 자체로 브라우저 해석(렌더링)불가능, 각 프로그래밍언어들 렌더링
+
+[ Spring 과 JSP 통합 ]
+    1. 문제점 : Spring 회사는 공식적인 JSP지원하지 않는다.
+    2. 설치방법 : 그레이들 환경
+        1)
+        2) 패키지 구성
+            1. ( src -> main -> )
+            2.
+            *
+            3. 모든 .jsp 파일 상단에 
