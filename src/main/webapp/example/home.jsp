@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset='utf-8'>
@@ -14,13 +15,10 @@
 
     <h4> .jsp 파일내 .jsp 파일 포함하기 : html 안되는 기능 </h4>
 
-    <jsp:include page = "/example/header.jsp"></jsp:include>    
-
+    <jsp:include page = "/example/header.jsp"></jsp:include>
     <h3> 메인홈페이지 : localhost:8080/example/home.jsp </h3>
     <h3> 홈 파일.jsp 입니다. </h3>
-
-    
-
     <jsp:include page="/example/footer.jsp"></jsp:include>
+
 </body>
 </html>

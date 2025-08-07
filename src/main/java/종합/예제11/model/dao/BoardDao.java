@@ -21,6 +21,7 @@ public class BoardDao {
     private String db_user = "root";
     private String db_password = "1234";
     private Connection conn;
+
     private void connect(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");

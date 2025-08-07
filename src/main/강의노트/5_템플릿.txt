@@ -16,9 +16,17 @@
 [ Spring 과 JSP 통합 ]
     1. 문제점 : Spring 회사는 공식적인 JSP지원하지 않는다.
     2. 설치방법 : 그레이들 환경
-        1)
+        1) build.gradle 파일내 jsp 의존성(dependencies) 추가 -> ctrl+shift+O(새로고침)
+            implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
         2) 패키지 구성
-            1. ( src -> main -> )
-            2.
-            *
-            3. 모든 .jsp 파일 상단에 
+            1. ( src -> main -> webapp 폴더 생성 )
+            2. webapp 폴더내 .jsp 파일생성
+                * 파일내 HTML 또늩 JSP 코드 작성, 인텔리제이 무료버전 자동완성 x -> VSCODE
+            3. 모든 .jsp 파일 상단에 jsp 설정코드
+                <%@ page language="java" contentType="text/html; charset=UTF-8"
+                    pageEncoding="UTF-8"%>
+            * localhost:8080/(webapp)이하 경로로 URL 정의된다.
+            -> http://localhost:8080/test.jsp
+        3) 다른 .jsp파일 불러오기 , 헤더/푸터 페이지 사용된다.
+            <jsp:include page=".jsp경로"></jsp:include>
+            * 주의할점 : 마크업과 마크업사이 공백/띄어쓰기금지

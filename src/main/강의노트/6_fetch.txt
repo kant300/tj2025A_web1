@@ -11,16 +11,21 @@
     2. 역할 : HTTP 요청을 보내고 응답을 비동기적으로 처리함수
     3. 사용법
         [ 비동기 방법 ] : then 이용한 체인 형식 , 실행순서 보장안됨
-        fetch( URL , OPTION )
-            .then( response => response.json() ) R = R.json 다른문자로 해도 상관없지만 .json 앞에 있는 두개의 글자가 같아야 한다.
-            .then( data => { } )
-            .catch( error => { }
+        () => {
+            fetch( URL , OPTION )
+                .then( response => response.json() ) R = R.json 다른문자로 해도 상관없지만 .json 앞에 있는 두개의 글자가 같아야 한다.
+                .then( data => { } )
+                .catch( error => { } )
+        }
         [ 동기 방법 ] : async/await 이용한 동기 형식, *권장* : 실행순서 보장됨
-
-        await fetch( URL , OPTION )
-            .then( response => response.json() ) R = R.json 다른문자로 해도 상관없지만 .json 앞에 있는 두개의 글자가 같아야 한다.
-            .then( data => { } )
-            .catch( error => { }
+        async () => {
+            try{
+                const response = await fetch( URL , OPTION );
+                const data = await response.json();
+            }catch( error ){
+                console.log( error );
+            }
+        }
     4.
         - url : Spring프로젝트내 통신할 controller의 @XXXmapping 에서 정의된 URL
             주로 get/delete queryString : `url ? param1 = ${value1} & param2 = ${value}`

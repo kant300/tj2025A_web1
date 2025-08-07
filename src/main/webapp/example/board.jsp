@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><!DOCTYPE html>
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset='utf-8'>
@@ -11,7 +12,7 @@
 </head>
 <body>
     <!--헤더 파일-->
-     <jsp:include page = "/example/header.jsp"></jsp:include>  
+    <jsp:include page = "/example/header.jsp"></jsp:include>
     <!--본문-->  
     <div>
         <h3> 게시판 목록 </h3>
