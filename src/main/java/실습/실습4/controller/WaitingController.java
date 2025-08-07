@@ -1,4 +1,4 @@
-package 실습.실습4.waitingController;
+package 실습.실습4.controller;
 
 import org.springframework.web.bind.annotation.*;
 import 실습.실습4.model.dao.WaitingDao;
