@@ -48,7 +48,7 @@ public class BoardDao {
         return false; // 예외 발생시 저장실패.
     } // func end
 
-    // (2) 전체조회 기능 구현
+    // (2) 전체조회
     public ArrayList<BoardDto> boardPrint( ) {
         // public : 다른패키지의 Controller 가 접근하기 위해 public 다른패키지 접근 vs private 현재클래스만
         // ArrayList<BoardDto> : *배열* 대신에 다양한 편의성 기능을 제공하는 ArrayList 클래스
