@@ -66,17 +66,31 @@ public class BoardDao extends Dao{
     }
 
     // [4] 삭제
-    public boolean boardDelete( int bno ){
-        try{
+    public boolean boardDelete( int bno ) {
+        try {
             String sql = "delete from board where bno = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt( 1, bno );
+            ps.setInt(1, bno);
             int count = ps.executeUpdate();
-            if( count == 1  ) return true;
-        }catch( Exception e){
+            if (count == 1) return true;
+        } catch (Exception e) {
             System.out.println(e);
         }
         return false;
     }
+        // [5] 개별수정
+       public boolean boardUpdate( BoardDto boardDto ){
+           try{
+               String sql = "update board set bcontent = ? where bno = ? ";
+               PreparedStatement ps = conn.prepareStatement(sql);
+               ps.setString( 1, boardDto.getBcontent() );
+               ps.setInt( 2, boardDto.getBno() );
+               int count = ps.executeUpdate();
+               if ( count == 1 ) return true;
+
+           }catch (Exception e){
+               System.out.println(e);}
+           return false;
+        }
 
 }//class e

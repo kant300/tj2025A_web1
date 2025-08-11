@@ -37,12 +37,21 @@ public class BoardController {
         return result;
     }
 
-// [4] 삭제
+// [4] 개별삭제
     @DeleteMapping("")
     public boolean boardDelete( @RequestParam int bno ){
         System.out.println("BoardController.boardDelete");
         System.out.println("bno = " + bno);
         boolean result = boardService.boardDelete(bno);
+        return result;
+    }
+
+    // [5] 개별수정
+    @PutMapping("") //localhost:8080/board
+    public  boolean boardUpdate( @RequestBody BoardDto boardDto ){
+        System.out.println("BoardController.boardUpdate");
+        System.out.println("boardDto = " + boardDto);
+        boolean result = boardService.boardUpdate( boardDto );
         return result;
     }
 
