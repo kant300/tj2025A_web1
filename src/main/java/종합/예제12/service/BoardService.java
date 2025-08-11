@@ -33,7 +33,7 @@ public class BoardService {
         return result;
     }
 
-    // [4] 삭제
+    // [4] 개별삭제
     public boolean boardDelete( int bno ){
         System.out.println("BoardService.boardDelete");
         System.out.println("bno = " + bno);

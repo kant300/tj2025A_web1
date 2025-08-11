@@ -11,8 +11,10 @@ import java.util.List;
 
 @Repository
 public class BoardDao extends Dao{
-    // (1) 등록 기능 구현
+    // (1) 등록
     public boolean boardWrite(BoardDto boardDto ){
+        System.out.println("BoardDao.boardWrite");
+        System.out.println("boardDto = " + boardDto);
         try{
             String sql = "insert into board( bcontent , bwriter ) values ( ? ,? );";
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -25,48 +27,53 @@ public class BoardDao extends Dao{
         }
         return false;
     }
-    // (2) 전체조회 기능 구현
+    // (2) 전체조회
     public List<BoardDto> boardPrint() {
-        List<BoardDto> list = new ArrayList<>();
+        System.out.println("BoardDao.boardPrint");
+        List<BoardDto> list = new ArrayList<>(); // 1. 여러개 레코드를 dto로 변환해서 dto들을 저장할 리스트 선언
         try {
-            String sql = "select *from board";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while ( rs.next() ){ // 조회된 결과에서 다음 레코드 이동
+            String sql = "select *from board"; // 2. sql 작성
+            PreparedStatement ps = conn.prepareStatement(sql); // 3. sql 기재
+            ResultSet rs = ps.executeQuery(); // 4. sql 실행 후 결과 조작
+            while ( rs.next() ){ // 5. rs.next() 조회된 결과에서 다음 레코드 이동
                 BoardDto boardDto = new BoardDto();
-                boardDto.setBno( rs.getInt( "bno") );
+                boardDto.setBno( rs.getInt( "bno") ); // 6. rs.getInt() 현재조회중인 레코드에서 bno속성값 호출
                 boardDto.setBcontent( rs.getString("bcontent") );
                 boardDto.setBwriter( rs.getString("bwriter") );
-                list.add( boardDto );
+                list.add( boardDto ); // 7. 생성한 dto를 리스트에 저장
             }
         } catch (Exception e) {
             System.out.println(e);
         }
-        return list;
+        return list; //8. 리스트 반환
     }
 
     // [3] 개별조회
     public BoardDto boardFind( int bno ){
+        System.out.println("BoardDao.boardFind");
+        System.out.println("bno = " + bno);
         try{
             String sql = "select * from board where bno = ? ";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt( 1, bno );
+            ps.setInt( 1, bno ); // sql문법내 첫번째 ? 에 int타입 bno값 대입
             ResultSet rs = ps.executeQuery();
             if( rs.next() ){
                BoardDto boardDto = new BoardDto();
                boardDto.setBno( rs.getInt( 1) );
                boardDto.setBcontent( rs.getNString( 2) );
                boardDto.setBwriter( rs.getString( 3) );
-               return boardDto;
+               return boardDto; // 성공시 1개 dto
             }
         } catch (Exception e) {
             System.out.println(e);
         }
-        return null;
+        return null;  // 실패시 null
     }
 
-    // [4] 삭제
+    // [4] 개별삭제
     public boolean boardDelete( int bno ) {
+        System.out.println("BoardDao.boardDelete");
+        System.out.println("bno = " + bno);
         try {
             String sql = "delete from board where bno = ?";
             PreparedStatement ps = conn.prepareStatement(sql);

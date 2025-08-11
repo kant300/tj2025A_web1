@@ -12,7 +12,8 @@ import java.util.List;
 @RequestMapping("/board") // + 공통 URL
 public class BoardController {
     @Autowired private BoardService boardService;
-    // (1) 등록 기능 구현
+    
+    // (1) 등록
     @PostMapping("") //localhost:8080/board
     public boolean boardWrite( @RequestBody BoardDto boardDto ){
         System.out.println("BoardController.boardWrite");
@@ -21,7 +22,7 @@ public class BoardController {
         return result;
     }
 
-    // (2) 전체조회 기능 구현
+    // (2) 전체조회
     @GetMapping("") // localhost:8080/board
     public List<BoardDto> boardPrint(){
         System.out.println("BoardController.boardPrint");
@@ -38,7 +39,7 @@ public class BoardController {
     }
 
 // [4] 개별삭제
-    @DeleteMapping("")
+    @DeleteMapping("")// localhost:8080/board?bno=3
     public boolean boardDelete( @RequestParam int bno ){
         System.out.println("BoardController.boardDelete");
         System.out.println("bno = " + bno);
