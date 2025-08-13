@@ -44,4 +44,15 @@ public class LoginController {
 
     }
 
+    // 3. 로그아웃 : 세션정보내 속성 제거하기
+    @GetMapping("/logout")
+    public boolean logout( HttpServletRequest request ){
+
+        HttpSession session = request.getSession();
+
+        session.removeAttribute("loginMno");
+
+        return true;
+    }
+
 }
