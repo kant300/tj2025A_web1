@@ -1,5 +1,5 @@
 package 과정평가.자격.model.dao;
-
+/*
 public class Dao {
     // [DB연동 부가정보 ]
     private String db_url = "jdbc:mysql://localhost:3306/assessment";
@@ -18,3 +18,4 @@ public class Dao {
         }catch (Exception e ){  System.out.println(e);    }
     }
 }
+*/

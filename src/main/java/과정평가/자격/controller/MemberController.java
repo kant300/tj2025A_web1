@@ -1,5 +1,5 @@
 package 과정평가.자격.controller;
-
+/*
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,3 +14,4 @@ public class MemberController {
     // [1] 회원등록
     @PostMapping
 }// class e
+*/
