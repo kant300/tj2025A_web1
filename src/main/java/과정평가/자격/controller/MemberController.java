@@ -9,7 +9,7 @@ import 과정평가.자격.service.MemberService;
 @RestController
 @RequestMapping("/member")
 public class MemberController {
-    @Autowired private MemberService memberService;
+    @Autowired private MemberServic memberService;
 
     // [1] 회원등록
     @PostMapping
