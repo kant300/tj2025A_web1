@@ -107,8 +107,9 @@ public class MemberController {
         Object obj = session.getAttribute("loginMno");
         int loginMno = (int)obj;
         // 4. 서비스에게 전달후 응답받기
+        boolean result = memberService.updatePassword(loginMno, map);
         if( result == true ) session.removeAttribute("loginMno");
-        //boolean result = memberService.updatePassword(loginMno, map);
+
         return result;
     }
 
@@ -120,7 +121,7 @@ public class MemberController {
         // 2. 로그인된 회원번호 꺼내개 = 수정하는 회원의 번호
         int loginMno = (int)session.getAttribute( "loginMno");
         // 3. 서비스에게 전달후 응답받기
-        return memberService.delete(loginMno, oldpwd);
+        //return memberService.delete(loginMno, oldpwd);
         boolean result = memberService.delete( loginMno , oldpwd);
         //
         if(result == true) session.removeAttribute("loginMno");
