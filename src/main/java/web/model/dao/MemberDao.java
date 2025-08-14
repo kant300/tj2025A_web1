@@ -143,6 +143,61 @@ public class MemberDao extends Dao { //JDBC 연동 상속받기
         return false;
     }
 
+    // [9] 아이디찾기
+    public String findId(String mname, String mphone){
+        System.out.println("MemberDao.findId");
+        System.out.println("mname = " + mname + ", mphone = " + mphone);
+        try{
+            String sql="select mid from member where mname=? and mphone=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString( 1, mname);
+            ps.setString( 2, mphone );
+            ResultSet rs = ps.executeQuery();
+            if(rs.next() ){
+                return rs.getString("mid"); //아이디반환
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null; // 일치하는 정보가 없으면 null반환
+    }
+
+    // [10] 비밀번호 재설정
+    public boolean resetPassword(String mid , String mphone, String newpwd ){
+        try{
+            String sql="update member set mpwd = ? where mid =? and mphone = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, newpwd);
+            ps.setString(2, mid);
+            ps.setString(3, mphone);
+            return ps.executeUpdate()==1; // 1개 레코드가 업데이트되면 성공
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+//    // [11] 소셜로그인
+//    public int socialLogin(String socialType, String socialID){
+//        try{
+//            String sql="select mno from member where social_type=? anc social_id=?";
+//            PreparedStatement ps = conn.prepareStatement(sql);
+//            ps.setString(1, socialType);
+//            ps.setString(2,socialID);
+//            ResultSet rs = ps.executeQuery();
+//            if( rs.next()){
+//                return  rs.getInt("mno");// 기존 회원인 경우 회원번호 반환
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//        return 0; // 신규회원 또는 실패시 0 반환
+//    }
+//
+//    // [12] 소셜 회원가입
+//    public int socialSignup(String sociaType, String socialId, String mname,
+//                            String mphone , String )
+
 
 
 

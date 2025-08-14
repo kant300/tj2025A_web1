@@ -107,7 +107,8 @@ public class MemberController {
         Object obj = session.getAttribute("loginMno");
         int loginMno = (int)obj;
         // 4. 서비스에게 전달후 응답받기
-        boolean result = memberService.updatePassword(loginMno, map);
+        if( result == true ) session.removeAttribute("loginMno");
+        //boolean result = memberService.updatePassword(loginMno, map);
         return result;
     }
 
@@ -120,8 +121,27 @@ public class MemberController {
         int loginMno = (int)session.getAttribute( "loginMno");
         // 3. 서비스에게 전달후 응답받기
         return memberService.delete(loginMno, oldpwd);
+        boolean result = memberService.delete( loginMno , oldpwd);
+        //
+        if(result == true) session.removeAttribute("loginMno");
+        return result;
+    }
 
+    // [9] 아이디찾기
+    @PostMapping("/find/id")
+    public String findID(@RequestBody Map<String, String>map){
+        String mname = map.get("mname");
+        String mphone = map.get("mphone");
+        return memberService.findID(mname,mphone);
+    }
 
+    // [10] 비밀번호 재설정
+    @PutMapping("/reset/password")
+    public boolean resetPassword(@RequestBody Map<String, String> map){
+        String mid = map.get("mid");
+        String mphone = map.get("mphone");
+        String newpwd = map.get("newpwd");
+        return memberService.resetPassword(mid,mphone, newpwd);
     }
 
 

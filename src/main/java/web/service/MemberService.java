@@ -55,6 +55,19 @@ public class MemberService {
         return result;
     }
 
+    // [9] 아이디찾기
+    public String findID(String mname, String mphone){
+        return memberDao.findId(mname, mphone);
+    }
+
+    // [10] 비밀번호 재설정
+    public boolean resetPassword(String mid, String mphone, String newpwd ){
+        // 비밀번호 암호화로직을 여기에 추가하는 것이 좋습니다.
+        // 현재는 단순문자열이지만, 실제로는 암호화도니 비밀번호를 저장해야 합니다.
+        return memberDao.resetPassword(mid,mphone, newpwd);
+    }
+
+
 
 
 
