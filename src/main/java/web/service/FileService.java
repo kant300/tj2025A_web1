@@ -1,9 +1,14 @@
 package web.service;
 
+import jakarta.servlet.Servlet;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.net.URLEncoder;
 import java.util.UUID;
 
 @Service // 해당 클래스를 스프링 컨테이너의 빈 등록
@@ -53,7 +58,54 @@ public class FileService {
 
 
     // [2] 파일 다운로드
+    public void fileDownload(String fileName , HttpServletResponse response ){
+        // 매개변수1 : String fileName 다운로드 받을 파일명
+        // 매개변수1 : HttpServletResponse response 다운로드를 요청한 사용자의 *응답*객체
+        // 1. 다운로드 받을 파일명과 업로드 경로 조합
+        String downloadPath = uploadPath + fileName;
+        // 2. 만약에 지정한 경로에 파일이 없으면 리턴 , File클래스란? 파일/폴더 관련 메소드/기능 제공
+        File file = new File( downloadPath);
+        if( !file.exists()){ return; }
+
+        try{ // 예외처리 필수
+    // 3. 업로드할 파일을 자바(바이트)로 가져오기(파일읽기)
+            // 3-1 파일 입력스트림 객체 생성
+            FileInputStream fin = new FileInputStream( downloadPath);
+            // 3-2 파일용량 만큼 배열 생성, 읽어온 바이트들을 저장할 배열변수 선언
+            long fileSize = file.length(); // 파일용량/바이트수
+            byte[] bytes = new byte[ (int)fileSize ]; // 파일 용량만큼 바이트 배열변수 선언
+            // 3-3 파일 입력스트림 객체로 파일을 읽어와서 배열에 저장
+            fin.read( bytes );
+            // 3-4 안전하게 스트림 닫기, 스트림이란 ? 바이트가 다니는 (이동)통신 경로
+            fin.close(); // 필수는 아니지만 대용량에서는 안전하게 압력스트림 객체을 직접 닫기 권장!
+
+    // ************************** 다운로드 형식 지정 : 브라우저 마다 상이 ************************ //
+    // 1. 파일의 uuid 제거
+            String oldFilename = fileName.split("_")[1]; // UUID-파일명, _언더바 기준으로 잘라서 2번째 문자열 뜻
+            //  ** 2. 읃답 형식 지정하기, 다운로드 형식과 다운로드 파일지정 , URL은 한글 지원하지 않는다. URLEncoder.encode(oldFilename , "UTF-8");
+            response.setHeader("Content-Disposition" , "attachment;filename="+ URLEncoder.encode(oldFilename , "UTF-8") );
+    // 4. 업로드할 파일을 사용자에게 (response객체 이용한) 응답하기
+            // 4-1 파일 출력스트림 객체 생성 , 서블릿이란? 자바회사에서 만든 HTTP요청/응답 클래스
+            ServletOutputStream fout = response.getOutputStream(); // response객체가 출력스트림제공
+            // 4-2 '3-3'에서 읽어온 바이트 배열을 다운로드요청한 (response) 사용자에게 출력/쓰기 하기(내보내기)
+            fout.write( bytes );
+            // 4-3 안전하게 스트림 닫기
+            fout.close(); // 필수는 아니지만 대용량에서는 안전하게 압력스트림 객체을 직접 닫기 권장!
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
 
     // [3] 파일 삭제
+    public boolean fileDelete( String fileName ){
+        // 1. 삭제할 파일명과 업로드 경로 조합
+        String filePath = uploadPath + fileName;
+        // 2. 만약에 경로에 파일이 존재하면 삭제후 true
+        File file = new File( filePath);
+        if( file.exists() ){ file.delete(); } // .delete() : 지정한
+        // 2. 아니면 false
+        return false;
+    }
 
 }// func e

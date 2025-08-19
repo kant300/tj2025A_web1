@@ -1,9 +1,8 @@
 package web.controller;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import web.service.FileService;
 
@@ -19,6 +18,20 @@ public class FileController {
         System.out.println("FileController.fileUpload");
         System.out.println("multipartFile = " + multipartFile);
         String result = fileService.fileUpload(multipartFile);
+        return result;
+    }
+
+    // [2] 다운로드
+    @GetMapping("/download")
+    // GET , http://localhost:8080/file/download?fileName=d4d84bac-88ba-423a-99d9-14a6580324d4_blog.png
+    public void fileDownload(@RequestParam String fileName , HttpServletResponse response ){
+        fileService.fileDownload( fileName, response );
+    }
+
+    // [3] 파일삭제
+    @GetMapping("/delete")
+    public boolean fileDelet( @RequestParam String fileName ){
+        boolean result = fileService.fileDelete( fileName );
         return result;
     }
 }// class e
