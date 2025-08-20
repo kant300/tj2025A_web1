@@ -37,10 +37,12 @@ public class ProductDao extends Dao{
     // [1-2] 제품 이미지 등록
     public boolean createProductImage( int pno, String fileName ){
         try{
-            String sql = "insert int productimg( pimgname,pno ) values( ?,?)";
+            String sql = "insert into productimg( pimgname,pno ) values( ?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, fileName);
             ps.setInt(2, pno);
+            int count=ps.executeUpdate();
+            if(count == 1) {return true;}
         } catch (Exception e) {
             System.out.println(e);
         }

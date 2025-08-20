@@ -19,16 +19,16 @@
             <li><a href="/datago/data.jsp"> 공공데이터 </a></li>
             <li><a href="/kakao/map.jsp"> 카카오지도 </a></li>
             <li><a href="/kakao/datamap.jsp"> 데이터지도 </a></li>
+            <li><a href="/product/create.jsp"> 제품등록 </a></li>
+            <li><a href="/product/list.jsp"> 제품보기 </a></li>
         </ul>
         <ul id="log-menu"><!-- 로그인 안했을때 구역 / 로그인 했을때 구역  를 JS 해서 표현 -->
-            <li><a href="/member/loigin.jsp"> 로그인 </a></li>
-            <li><a href="/member/signup.jsp"> 회원가입 </a></li>
+            
             
         </ul>
     </div>
 
-    <!---->
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1ac4a57d8a5927d34020a891fcdbbcbd&libraries=clusterer"></script>
+   
     <!-- JS 가져오기 -->
     <script src="/js/header.js"></script>
 
