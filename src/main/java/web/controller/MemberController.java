@@ -128,12 +128,14 @@ public class MemberController {
         return result;
     }
 
-    // [9] 아이디찾기
-    @PostMapping("/find/id")
-    public String findID(@RequestBody Map<String, String>map){
-        String mname = map.get("mname");
-        String mphone = map.get("mphone");
-        return memberService.findID(mname,mphone);
+    // [9] 아이디찾기/비밀번호 찾기
+    @GetMapping("/findid")
+    public Map<String , String>  findID( @RequestParam Map<String, String>map){
+        return memberService.findID( map );
+    }
+    @GetMapping("/findpwd")
+    public Map<String ,String > findPwd( @RequestParam Map<String , String >map){
+        return memberService.findPwd( map );
     }
 
     // [10] 비밀번호 재설정
