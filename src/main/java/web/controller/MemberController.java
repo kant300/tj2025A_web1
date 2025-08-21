@@ -1,4 +1,4 @@
-package web.controller;
+package web.controller;  // 실습6
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

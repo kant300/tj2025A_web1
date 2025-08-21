@@ -55,8 +55,14 @@ public class MemberService {
         return result;
     }
 
-    // [9] 아이디찾기
-    public String findID(String mname, String mphone){
+    // [9] 아이디/비밀번호찾기
+    public Map<String ,String > findID( Map<String , String> map){
+        // 컨트롤러로 부터 입력받은 이름과 연락처가 담긴 map 객체를 dao에게 전달하고 결과받기
+
+
+        // dao 결과에 따른 새로운 응답타입을 만들기 위한 새로운 map 객체생성
+
+        // 만약에 dao결과가 null이면 msg(메시지)
         return memberDao.findId(mname, mphone);
     }
 
