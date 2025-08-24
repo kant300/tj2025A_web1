@@ -49,7 +49,7 @@
         * < input name="pname"/> ------ class productDto{ String pname }
     2. const formData = new FormData( form ) ;      : 일반(텍스트위주)폼 --> 데이터(바이트)폼 전환
         * 기존 폼 속성회 속성추가 : formData.append( '속성명' , 값 );
-    3. const option=
+    3. const option=  { method : "POST" , body : formData }
         * 데이터폼 전송시 HTTP content-type 타입은 multipart/form-data 이며 fetch 생략가능
     * 스프링 서버에 업로드된 이미지를 html 에서 출력
         - <img src="http://localhost:8080/upload/파일명"/>
@@ -58,16 +58,16 @@
     * 다운로드 구현 방법
         1. 흐름 구조
             1) 자바가 다운도르 받을 파일을 바이트로 가져온다.
-        클라이언트 ----- 짱구.jpg 주세요. ----->  서버(자바) ----- 짱구.jpg Input ----> build
-            1. FileInputStream fin = new FileInputStream( 파일객체 );
-            2. long fileSize = file.length();
-            3. byte[] bytes = new byte[ (int)fileSize ];
-            4. fin.read( bytes );
+            클라이언트 ----- 짱구.jpg 주세요. ----->  서버(자바) ----- 짱구.jpg Input ----> build
+                1. FileInputStream fin = new FileInputStream( 파일객체 );
+                2. long fileSize = file.length();
+                3. byte[] bytes = new byte[ (int)fileSize ];
+                4. fin.read( bytes );
             2) 가져온 바이트를 클라이언트에게 보낸다.
-        클라이언트 <--- 짱구.jpg Output <-----  서버(자바)
-            * FileOutputStream 아닌 ServletOutputStream
-            1. ServletOutputStream fout = response.getOutputStream();
-            2. fout.write( bytes );
+            클라이언트 <--- 짱구.jpg Output <-----  서버(자바)
+                * FileOutputStream 아닌 ServletOutputStream
+                1. ServletOutputStream fout = response.getOutputStream();
+                2. fout.write( bytes );
 
     2. 다운로드시 브라우저의 다운로드 형식 지정
         response.setHeader( "Content-Disposition" , "attachment;filename="+ "파일명" );
