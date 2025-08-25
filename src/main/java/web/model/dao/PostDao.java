@@ -55,7 +55,11 @@ public class PostDao extends Dao {
     public List<PostDto> findAll( int cno, int startRow, int count ){
         List<PostDto> list = new ArrayList<>();
         try{
-            String sql = "select * from post where cno= ? order by pno desc limit ? , ?";
+            String sql = "SELECT * FROM post p INNER JOIN member m " +
+                    " ON p.mno = m.mno" +
+                    " WHERE p.cno = ?" +
+                    " ORDER BY p.pno DESC" +
+                    " LIMIT ? , ? ";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt( 1 , cno );
             ps.setInt( 2, startRow );
@@ -69,6 +73,8 @@ public class PostDao extends Dao {
                 postDto.setPdate( rs.getString("pdate") );
                 postDto.setPview( rs.getInt("pview") );
                 postDto.setPno( rs.getInt( "pno") );
+                postDto.setPtitle( rs.getString("ptitle"));
+                postDto.setMid(rs.getString("mid")); // member테이블과 join한 결과 mid 호출가능하다.
                 list.add( postDto );
             }
         } catch (Exception e) {

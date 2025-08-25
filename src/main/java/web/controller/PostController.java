@@ -30,6 +30,7 @@ public class PostController {
     }
 
     // [2] 게시물 전체 조회
+    @GetMapping("") // method : GET   , URL : localhost:8080/post?cno=1&page=1&count=5
     public PageDto findAllPost(@RequestParam( defaultValue = "1") int cno, // defaultValue : 값생략시 기본값 대입
                                @RequestParam( defaultValue = "1") int page,
                                @RequestParam( defaultValue = "5") int count ){
