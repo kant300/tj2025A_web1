@@ -33,6 +33,7 @@
             </tbody>
         </table>
 
+        
         <div style="width: 300px;">
             <ul class="pageBtnBox"
             style="display: flex; justify-content: space-between;">
@@ -43,6 +44,23 @@
                 <li> <a href="post.jsp?cno=1&page=5"> 5 </a></li>
 
             </ul>
+
+        </div>
+
+
+        <div style="display: flex;">
+            <div>
+                <select class="key">
+                    <option value="ptitle"> 제목 </option>
+                    <option value="pcontent"> 내용 </option>
+                </select>
+            </div>
+            <div> 
+                <input type="text" class="keyword" placeholder="검색어 입력하세요." />
+            </div>
+            <div>
+                <button type="button" onclick="onSearch()"> 검색 </button>
+            </div>
 
         </div>
     </div>
