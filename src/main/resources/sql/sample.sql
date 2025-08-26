@@ -231,3 +231,11 @@ INSERT INTO reply (rcontent, mno, pno) VALUES
 ('더 많은 자료를 찾을 수 있을까요?', 4, 2);
 
 select * from reply;
+
+
+# 속성명
+
+select * from post; -- 1. 레코드조회
+select count(*) from post; -- 2. 레코드 수 조회
+select count(*) from post where cno = 1; -- 3. 조건부 레코드 수 조회
+select count(*) from post where cno = 1 and ptitle like '%ai%'; -- 4. 조건부 레코드 수 조회 
