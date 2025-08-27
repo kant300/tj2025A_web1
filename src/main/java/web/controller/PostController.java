@@ -46,5 +46,11 @@ public class PostController {
 
     }
 
+    // [3] 개별조회
+    @GetMapping("/view")
+    public PageDto getPost( @RequestParam int pno ){
+        return postService.getPost(pno);
+    }
+
 
 }// class e

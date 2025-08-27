@@ -77,5 +77,9 @@ public class PostService {
         pageDto.setData( postList );    // 페이지한 게시물 리스트
         return pageDto;     // 반환
     }
+    // [3] 게시물 개별 정보조회
+    public PageDto getPost( int pno ){
+        return postDao.getPost( pno );
+    }
 
 }//class e
