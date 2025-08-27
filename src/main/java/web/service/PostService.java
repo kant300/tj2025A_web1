@@ -77,9 +77,27 @@ public class PostService {
         pageDto.setData( postList );    // 페이지한 게시물 리스트
         return pageDto;     // 반환
     }
-    // [3] 게시물 개별 정보조회
-    public PageDto getPost( int pno ){
+    // [3-1] 게시물 개별 정보조회
+    public PostDto getPost( int pno ){
         return postDao.getPost( pno );
+    }
+    // [3-2] 게시물 조회수 1증가
+    public void incrementView( int pno ){
+        postDao.incrementView( pno );
+    }
+//    // [3-1]과 [3-2] 하나로
+//    public PageDto getPost( int pno ){
+//        postDao.incrementView( pno );
+//        return postDao.getPost( pno );
+//    }
+    // [4] 개별삭제 :  DAO의 deletePost 메서드를 호출하여 게시물 삭제를 요청하고 결과를 반환
+    public boolean deletePost( int pno ){
+        return postDao.deletePost(pno);
+    }
+
+    // [5] 개별수정 : DAO의 updatePost 메서드를 호출하여 게시물 수정을 요청하고 결과를 반환
+    public int updatePost( PostDto postDto ){
+        return postDao.updatePost( postDto );
     }
 
 }//class e

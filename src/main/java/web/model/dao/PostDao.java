@@ -128,7 +128,7 @@ public class PostDao extends Dao {
         return list;
     }
 
-    // [3] 개별 조회
+    // [3-1] 개별 조회
     public PostDto getPost( int pno ){
             try{
             String sql = " select * from post p inner join member m on p.mno where pno = ? ";
@@ -148,5 +148,47 @@ public class PostDao extends Dao {
         }
         return null;
     }
+    // [3-2] 게시물 조회수 1증가 + 업데이트 기능
+    public void incrementView( int pno ){
+        try{
+            String sql = "update post set pview = pview + 1 where pno = ? ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt( 1, pno );
+            ps.executeUpdate(); // void라서 return 없다
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    // [4] 게시물 삭제
+    public boolean deletePost( int pno ) {
+         try{
+             String sql=" delete from post where pno = ? "; //pno에 해당하는 게시물 레코드를 삭제
+             PreparedStatement ps = conn.prepareStatement(sql);//인젝션 방지를 위해 PreparedStatement를 사용
+             ps.setInt( 1, pno ); //첫 번째 '?'에 pno(게시물 번호)를 설정
+             return ps.executeUpdate() == 1; // 1개 행이 삭제되면 true를 반환하고, 아니면 false를 반환
+         } catch (Exception e) { // 예외 발생 시 콘솔에 출력하고 false를 반환
+             System.out.println(e);
+         }
+        return false;
+    }
+
+    // [5] 게시물 수정
+    public int updatePost( PostDto postDto ){
+        try{ // pno에 해당하는 게시물의 제목, 내용, 카테고리 번호를 수정
+            String sql=" update post set ptitle = ? , pcontent = ? , cno = ? where pno = ? ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString( 1, postDto.getPtitle() ); // DTO 객체에서 값을 가져와 SQL 쿼리의 '?'에 설정
+            ps.setString( 2, postDto.getPcontent() );
+            ps.setInt( 3, postDto.getCno() );
+            ps.setInt( 4, postDto.getPno() );
+            int count = ps.executeUpdate(); // SQL 쿼리를 실행하고 영향을 받은 행의 수를 반환
+            if( count == 1 ){return postDto.getPno(); } // 1개 행이 성공적으로 수정되면 해당 게시물 번호를 반환
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return 0;  // 수정 실패 시 0을 반환
+    }
+
 
 }// class e

@@ -64,7 +64,7 @@ const viewPageButtons = async ( data )=>{
 
     // *************** 다음버튼 : 만약에 다음페이지가 전체페이지수보다 커지면 전체페이지수로 고정 ************** //
     html += `<li>
-                <a href="post.jsp?cno=${ cno }&page=${currentPage+5 >= totalPage ? totalPage : currentPage + 5 }${searchURL}"> 다음 </a>
+                <a href="post.jsp?cno=${ cno }&page=${currentPage+1 >= totalPage ? totalPage : currentPage + 1 }${searchURL}"> 다음 </a>
             </li>`
     pageBtnBox.innerHTML = html;
 
