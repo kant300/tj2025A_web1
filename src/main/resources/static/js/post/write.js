@@ -1,7 +1,13 @@
 // [*] 썸머노트 실행
+// $ : jquery (js 확장 라이브러리 ) 문법
 $(document).ready(function() {
-  $('#summernote').summernote();
+    $('#summernote').summernote({
+    lang: 'ko-KR', // 썸머노트 메뉴들을 한글화속성
+    minHeight : 300 , // 썸머노트 구역 최소높이
+    placeholder : '여기에 내용 입력해주세요' , // 가이드라인
+    });
 });
+
 console.log("write.js open");
 
 // [1] 글쓰기 요청
