@@ -101,7 +101,8 @@ create table reply(
     mno         int,
     pno         int,
     foreign key( mno ) references member(mno) on update cascade on delete cascade ,
-    foreign key( pno ) references post(pno) on update cascade on delete cascade
+    foreign key( pno ) references post(pno) on update cascade on delete cascade  -- 게시물 삭제시 댓글도 삭제
+    --  foreign key( pno ) references post(pno) -- 게시물 삭제시 참조중이 fk 존재하면 삭제 불가능  on delete set null
 );
 
 

@@ -11,6 +11,7 @@ import web.service.PostService;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.SplittableRandom;
 
@@ -99,12 +100,29 @@ public class PostController {
         return postService.deletePost( pno );
     }
 
-    // {5] 개별수정
+    // [5] 개별수정
     @PutMapping("")
     // @RequestBody PostDto postDto: 클라이언트가 전송한 JSON 데이터를 PostDto 객체로 자동 변환하여 받습니다.
     public int updatePost( @RequestBody PostDto postDto ){
         // Service 계층의 updatePost 메서드를 호출하여 게시물 수정을 처리하고 그 결과를 반환합니다.
         return postService.updatePost( postDto );
+    }
+
+    // [6] 댓글등록
+    @PostMapping("/reply")
+    public int writeReply( @RequestBody Map<String ,String > reply ,HttpSession session ){
+        // * 회원제 댓글이라서 *세션내 로그인정보 가져오기*
+        if( session.getAttribute( "loginMno") == null ) return 0; // 비로그인이면 실패
+
+        int loginMno = (int)session.getAttribute("loginMno"); // 로그인중이면 세션에서 회원번호 조회
+        reply.put("mno" , loginMno+"" ); // ?? +"" , 로그인된 회원번호를 map 추가
+        return postService.writeReply( reply );
+    }
+
+    // [7] 댓글전체조회
+    @GetMapping("/reply")
+    public List<Map<String , String > > findAllReply( @RequestParam int pno ){
+        return postService.findAllReply(pno);
     }
 
 

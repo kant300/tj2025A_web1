@@ -26,6 +26,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 }
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs << "-Xlint:unchecked"
+}
 
 
 tasks.named('test') {
