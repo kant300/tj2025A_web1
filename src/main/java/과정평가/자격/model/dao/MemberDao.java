@@ -68,13 +68,15 @@ public MemberDto memberList(int custno) {
         ps.setInt(1,custno);
         ResultSet rs = ps.executeQuery();
         if(rs.next()) {
-            memberDto.setCustno(rs.getInt("custno"));
-            memberDto.setCustname(rs.getString("custname"));
-            memberDto.setPhone(rs.getString("phone"));
-            memberDto.setAddress(rs.getString("address"));
-            memberDto.setJoindate(rs.getString("joindate"));
-            memberDto.setGrade(rs.getString("grade"));
-            memberDto.setCity(rs.getString("city"));
+            memberDto = new MemberDto(
+                rs.getInt("custno"),
+                rs.getString("custname"),
+                rs.getString("phone"),
+                rs.getString("address"),
+                rs.getString("joindate"),
+                rs.getString("grade"),
+                rs.getString("city")
+        );
         }
     } catch (Exception e) {
         System.out.println("MemberDao.memberView" + e);
@@ -129,7 +131,7 @@ public MemberDto memberList(int custno) {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-            result = rs.getInt("max(custno)") + 1;
+            result = rs.getInt("maxCustno") + 1;
             }else {
                 result = 1; // 테이블에 데이터가 없는 경우 1부터 시작
             }
