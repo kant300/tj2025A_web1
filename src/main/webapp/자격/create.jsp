@@ -12,35 +12,20 @@
 </head>
 <body>
     <jsp:incluce page="/자격/header.jsp"></jsp:incluce>
-
-    <h3> 홈쇼핑 회원 등록 </h3>
-    <div>
-        <table border="1">
-            <tr>
-                <td> 회원번호(자동발생) </td>
-                <td><input type="text" class="custNo" disabled></td>
-            </tr>
-            <tr>
-                <td> 회원성명 </td>
-                <td><input type="text" class="custName"></td>
-            </tr>
-            <tr>
-                <td> 회원전화 </td>
-                <td><input type="text" class="phone"></td>
-            </tr>
-            <tr>
-                <td> 가입일자 </td>
-                <td><input type="text" class = "grade"></td>
-            </tr>
-            <tr>
-                <td> 도시코드 </td>
-                <td><input type="text" class="city"></td>
-            </tr>
-        </table>
+        <div>
+            <h3> 홈쇼핑 회원 등록</h3>
+            회원번호(자동발생) : <input class="custNo"/><br/>
+            회원성명 : <input class="custName"/><br/>
+            회원전화 : <input class="phone"/><br/>
+            회원주소 : <input class="address"/><br/>
+            가입일자 : <input class="joinDate"/><br/>
+            고객등급[A:VIP,B:일반,C:직원] : <input class="grade"/><br/>
+            도시코드 : <input class="city"/><br/>
+        </div>
 
         <div id="buttonBox">
-            <button onclick="mCreate()"> 등록 </button>
-            <button onclick="mList()"> 조회 </button>
+            <button type="button" onclick="mCreate()"> 등록 </button>
+            <button type="button" onclick="mList()"> 조회 </button>
         </div>
     
     </div>    

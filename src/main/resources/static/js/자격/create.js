@@ -32,6 +32,7 @@ maxCustno();
 // [3] 회원정보 등록
 const mCreate = async()=>{
     console.log( "mCreate exe");
+    // 1. 입력받은 데이터 가져오기
     const custname = document.querySelector(".custname").value
     const phone = document.querySelector(".phone").value
     const address = document.querySelector(".address").value
@@ -63,7 +64,7 @@ const mCreate = async()=>{
         alert( "도시코드가 입력되지 않았습니다.")
         return;
     }
-
+     // 2. 입력받은 데이터를 객체화 한다.
     const data = {
         "custname" : custname,
         "phone" : phone,
@@ -72,12 +73,16 @@ const mCreate = async()=>{
         "grade" : grade,
         "city" : city
     }
+    // 3. fetch 옵션
     const option = { method : "POST" ,
         Headers : { "Content-Type" : "application/json"},
         body : JSON.stringify( data )
     }
+    // 4. fetch 실행
     const reponse = await fetch("/member" , option )
-    const m = await Response.json()
+    const data = await Response.json() // 5. 응답자료 타입변환
+    console.log(data);
+    // 6. 응답자료 확인
 
     if( m = true ){
         alert("회원등록이 완료되었습니다.")
@@ -85,7 +90,7 @@ const mCreate = async()=>{
         alert("회원등록을 실패하였습니다.")
     } 
     const mList = () =>{
-        location.href = "/자격/list."
+        location.href = "/자격/list.jsp"
     }
 }// func e
 
