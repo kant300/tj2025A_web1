@@ -18,6 +18,7 @@
 	build.gradele 파일 : 프로젝트내 라이브러리(남이만든코드들) 세팅 파일
 
 4. 그레이들 프로젝트 환경에서 "MYSQL연동" 라이브러리 와 Spring 설치
+    비공식설치 https://mvnrepository.com/
 	0. 접속 : https://start.spring.io/
 	--왼쪽 화면--
 	1. project : Gradle - Groovy
